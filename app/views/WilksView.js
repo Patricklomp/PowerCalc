@@ -54,21 +54,23 @@ export default class WilksView extends Component {
 
             <View styles={[styles.personInputs]}>
                 <Text>Total</Text>
-                <Input
-            style={styles.inputText}
-            onChangeText={(total) => this.setState({total})}
-            value={total}
-                />
+                    <Input
+                        placeholder="Total"
+                        style={styles.inputText}
+                        onChangeText={(total) => this.setState({total})}
+                        value={total}
+                    />
                 <Text>Person's weight</Text>
-            <Input
-            style={styles.inputText}
-            onChangeText={(weight) => this.setState({weight})}
-            value={weight}
-                />
-            <Text>M/W</Text>
-            <Switch onValueChange={this.handleGender}></Switch>
-            <Text onValueChange={this.handleType}>Raw/Equiped</Text>
-            <Switch></Switch>
+                    <Input
+                        placeholder="Weight"
+                        style={styles.inputText}
+                        onChangeText={(weight) => this.setState({weight})}
+                        value={weight}
+                        />
+                <Text>M/W</Text>
+                <Switch onValueChange={this.handleGender}></Switch>
+                <Text onValueChange={this.handleType}>Raw/Equiped</Text>
+                <Switch></Switch>
             </View>
 
 
