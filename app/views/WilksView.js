@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import {View, StyleSheet, Switch} from 'react-native'
-import {Card, Button,Text, Input } from 'react-native-elements';
+import {Card, Button,Text, Input, Icon, CheckBox } from 'react-native-elements';
 export default class WilksView extends Component {
     constructor(props){
         super(props);
         this.state= {
-            total: 0,
-            weight: 0,
-            totalPoints: 0,
+            total: "",
+            weight: "",
+            totalPoints: "",
             isMale: true,
-            isRaw: true,
-            isBench: false
         }
     }
 
@@ -27,15 +25,14 @@ export default class WilksView extends Component {
 
 
         let wilks =total*( 500/(vars[0] +vars[1]*x + vars[2]*Math.pow(x,2)+vars[3]*Math.pow(x,3)+vars[4]*Math.pow(x,4)+vars[5]*Math.pow(x, 5)));
-
+        wilks = Math.round(wilks*100)/100;
+        
         this.setState({
             totalPoints: wilks
         })
-
-        return wilks;
     }
     render() {
-        let {total, weight, totalPoints, isMale, isRaw, isBench} = this.state;
+        let {isMale, total, weight, totalPoints} = this.state;
 
         return (
            
@@ -50,6 +47,13 @@ export default class WilksView extends Component {
                         style={styles.inputText}
                         onChangeText={(total) => this.setState({total})}
                         value={total}
+                        leftIcon={
+                            <Icon
+                              name='create'
+                              size={24}
+                              color='black'
+                            />
+                          }
                     />
                 <Text>Person's weight</Text>
                     <Input
@@ -57,22 +61,54 @@ export default class WilksView extends Component {
                         style={styles.inputText}
                         onChangeText={(weight) => this.setState({weight})}
                         value={weight}
+                        leftIcon={
+                            <Icon
+                              name='create'
+                              size={24}
+                              color='black'
+                            />
+                          }
                         />
-                <Text>M/W</Text>
-                <Switch onValueChange={this.handleGender}></Switch>
-                <Text onValueChange={this.handleType}>Raw/Equiped</Text>
-                <Switch></Switch>
+                <View style={styles.child}>
+                 <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Male'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={this.state.isMale}
+                    onPress={() => this.setState({isMale: !this.state.isMale})}
+                   
+                    />
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Female'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={!this.state.isMale}
+                    onPress={() => this.setState({isMale: !this.state.isMale})}
+                    
+                    />
+                </View>
             </View>
 
 
-            <Text>Total: </Text>
-            <Text>{totalPoints}</Text>
+            <Text h4>Points: </Text>
+            <Text h4>{totalPoints}</Text>
             <Button
-  onPress={() => this.getTotal(weight,total,true)}
-  title="Calculate"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/>
+            icon={
+                <Icon
+                type= 'material-community'
+                 color= '#FFF'
+                    name= 'share'
+                />
+              }
+            onPress={() => this.getTotal(weight,total,isMale)}
+            title="Calculate"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+            />
             
           </Card>
           
@@ -98,5 +134,14 @@ const styles = StyleSheet.create({
     },
     personInputs: {
         width: 100
+    },
+    child: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        alignItems:'center',
+        justifyContent:'center',
+        paddingTop: 20
+
     }
 })

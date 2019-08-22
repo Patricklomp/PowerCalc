@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import {View, TextInput, StyleSheet, Switch } from 'react-native';
-import {Card, Button, Icon, Input, Text } from 'react-native-elements';
+import {Card, Button, Icon, Input, Text, CheckBox } from 'react-native-elements';
 
 export default class IpfView extends Component {
     constructor(props){
         super(props);
         this.state= {
-            total: 0,
-            weight: 0,
-            totalPoints: 0,
+            total: "",
+            weight: "",
+            totalPoints: "",
             isMale: true,
             isRaw: true,
             isBench: false
@@ -41,7 +41,7 @@ export default class IpfView extends Component {
 
             switch(true){
                 case(isRaw&&!isBench):
-                vars = [125.1435, 228.0300, 34.5246, 86.8301];
+                 vars = [125.1435, 228.0300, 34.5246, 86.8301];
                 break;
                 case(isRaw&&isBench):
                 vars = [25.0485, 43.8480, 6.7172, 13.9520];
@@ -60,6 +60,7 @@ export default class IpfView extends Component {
 
         if(total>0){
             IPFpoints = 500+100*(total-(vars[0]*Math.log(weight)-vars[1]))/(vars[2]*Math.log(weight)-vars[3]);
+            IPFpoints = Math.round(IPFpoints*100)/100;
         }
 
         this.setState({
@@ -107,6 +108,13 @@ export default class IpfView extends Component {
                                 style={styles.inputText}
                                 onChangeText={(total) => this.setState({total})}
                                 value={total}
+                                leftIcon={
+                                    <Icon
+                                      name='create'
+                                      size={24}
+                                      color='black'
+                                    />
+                                  }
                             />
                             <Text>Person's weight</Text>
                             <Input
@@ -114,31 +122,98 @@ export default class IpfView extends Component {
                                 style={styles.inputText}
                                 onChangeText={(weight) => this.setState({weight})}
                                 value={weight}
+                                leftIcon={
+                                    <Icon
+                                      name='create'
+                                      size={24}
+                                      color='black'
+                                    />
+                                  }
                             />
                     </View>
 
-                    <View styles={[styles.child]}>
-                    <Text>M/W</Text>
-                    <Switch value = {!isMale} onValueChange={this.handleGender}></Switch>
-                    <Text >Raw/Equiped</Text>
-                    <Switch value = {!isRaw} onValueChange={this.handleType}></Switch>
+                    <View style={[styles.child]}>
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Male'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={this.state.isMale}
+                    onPress={() => this.setState({isMale: !this.state.isMale})}
+                    />
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Female'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={!this.state.isMale}
+                    onPress={() => this.setState({isMale: !this.state.isMale})}
+                    />
+                    </View>
+
+                    <View style={[styles.child]}>
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Raw'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={this.state.isRaw}
+                    onPress={() => this.setState({isRaw: !this.state.isRaw})}
+                    />
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Equiped'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={!this.state.isRaw}
+                    onPress={() => this.setState({isRaw: !this.state.isRaw})}
+                    />
+
+                    </View>
+
+                    <View style={[styles.child]}> 
+
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='3-Lift'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={!this.state.isBench}
+                    onPress={() => this.setState({isBench: !this.state.isBench})}
+                    />  
+        
+                    <CheckBox
+                    containerStyle={styles.checkBox}
+                    center
+                    title='Bench'
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={this.state.isBench}
+                    onPress={() => this.setState({isBench: !this.state.isBench})}
+                    />
+                    
                     </View>
 
 
             </View>
 
 
-            <Text>Total: </Text>
-            <Text>{totalPoints}</Text>
+            <Text h4>Points: </Text>
+            <Text h4>{totalPoints}</Text>
             <Button
               icon={
                 <Icon
                 type= 'material-community'
-                 color= '#86939e'
+                 color= '#FFF'
                     name= 'share'
                 />
               }
-  onPress={() => this.getTotal(weight,total,isMale,isRaw,false)}
+  onPress={() => this.getTotal(weight,total,isMale,isRaw,isBench)}
   title="Calculate"
   color="#841584"
   accessibilityLabel="Calculate points"
@@ -151,15 +226,7 @@ export default class IpfView extends Component {
 }
 
 const styles = StyleSheet.create({
-    inputText: {
-        height: 40, 
-        borderColor: 'gray',
-         borderWidth: 1
-    },
-    header: {
-        fontSize: 20,
-        color: "white"
-    },
+   
     calculator: {
         fontFamily: "RobotoSlab-Regular",
         backgroundColor: 'white',
@@ -187,8 +254,15 @@ const styles = StyleSheet.create({
         width: 100
     },
     child: {
-        width: 50,
-        backgroundColor: "black"
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        alignItems:'center',
+        justifyContent:'center',
+
+    },
+    checkBox: {
+        width: "45%"
     }
 
 })

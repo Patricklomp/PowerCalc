@@ -20,9 +20,9 @@ export default class MyHeader extends Component{
             <Fragment>
                 <StatusBar barStyle="dark-content" />
                 <Header
-                    leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.homeButtonHandler() }}
+                    leftComponent={{ icon: 'home', color: '#fff', onPress: () => this.homeButtonHandler() }}
                     centerComponent={{ text: 'PowerCalc', style: { color: '#fff' } }}
-                    rightComponent={{ icon: 'home', color: '#fff',  onPress: () =>  this.infoButtonHandler()}}
+                    rightComponent={{ icon: 'info', color: '#fff',  onPress: () =>  this.infoButtonHandler()}}
                     />
             </Fragment>
         )
