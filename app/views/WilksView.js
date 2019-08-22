@@ -17,25 +17,16 @@ export default class WilksView extends Component {
     getTotal(weight,total,isMale){
 
         let x = weight;
-        let a,b,c,d,e,f = 0;
+        let vars = [0,0,0,0,0,0];
 
         if(isMale){
-            a = -216.0475144;
-            b = 16.2606339;
-            c = -0.002388645;
-            d = -0.00113732;
-            e = 7.01863E-06;
-            f =  -1.291E-08;
+            vars = [-216.0475144,16.2606339,-0.002388645,-0.00113732,7.01863E-06,-1.291E-08];
         }else{
-            a = 594.31747775582;
-            b = -27.23842536447;
-            c = 0.82112226871;
-            d = -0.00930733913;
-            e = 4.731582E-05;
-            f = -9.054E-08;
+            vars = [594.31747775582,-27.23842536447,0.82112226871,-0.00930733913,4.731582E-05,-9.054E-08];
         }
 
-        let wilks =total*( 500/(a +b*x + c*Math.pow(x,2)+d*Math.pow(x,3)+e*Math.pow(x,4)+f*Math.pow(x, 5)));
+
+        let wilks =total*( 500/(vars[0] +vars[1]*x + vars[2]*Math.pow(x,2)+vars[3]*Math.pow(x,3)+vars[4]*Math.pow(x,4)+vars[5]*Math.pow(x, 5)));
 
         this.setState({
             totalPoints: wilks

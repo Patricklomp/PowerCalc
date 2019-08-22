@@ -16,72 +16,58 @@ export default class IpfView extends Component {
     }
     getTotal(weight,total,isMale,isRaw,isBench){
         let IPFpoints = 0;
-        let c1 = 0;
-        let c2 = 0;
-        let c3 = 0;
-        let c4 = 0;
+        let vars = [0,0,0,0];
+       
 
+        
         if(isMale){
-            if(isRaw&&!isBench){
-                c1 = 310.6700;
-                c2 = 857.7850;
-                c3 = 53.2160;
-                c4 = 147.0835;
-            }
-            if(isRaw&&isBench){
-                c1 = 86.4745;
-                c2 = 259.1550;
-                c3 = 17.5785;
-                c4 = 53.1220;
-            }
 
-            if(!isRaw&&!isBench){
-                c1 = 387.2650;
-                c2 = 1121.2800;
-                c3 = 80.6324;
-                c4 = 222.4896;
+            switch(true){
+                case(isRaw&&!isBench):
+                vars = [310.6700,857.7850,53.2160,147.0835];
+                break;
+                case(isRaw&&isBench):
+                vars = [86.4745,259.1550,17.5785,53.1220];
+                break;
+                case(!isRaw&&!isBench):
+                vars = [387.2650,1121.2800,80.632,222.4896];
+                break;
+                case(!isRaw&&isBench):
+                vars = [133.9400,441.4650,35.3938,113.0057];
+                break;
             }
 
-            if(!isRaw&&isBench){
-                c1 = 133.9400;
-                c2 = 441.4650;
-                c3 = 35.3938;
-                c4 = 113.0057;
+        }else{
+
+            switch(true){
+                case(isRaw&&!isBench):
+                vars = [125.1435, 228.0300, 34.5246, 86.8301];
+                break;
+                case(isRaw&&isBench):
+                vars = [25.0485, 43.8480, 6.7172, 13.9520];
+                break;
+                case(!isRaw&&!isBench):
+                vars = [176.5800, 373.3150, 48.4534, 110.0103];
+                break;
+                case(!isRaw&&isBench):
+                vars = [49.1060, 124.2090, 23.1990, 67.4926];
+                break;
             }
-
-
-        }
-
-        if(!isMale){
-            if(isRaw&&!isBench){
-
-            }
-            if(isRaw&&isBench){
-
-            }
-
-            if(!isRaw&&!isBench){
-
-            }
-
-            if(!isRaw&&isBench){
-
-            }
-
-
+        
         }
 
 
 
         if(total>0){
-            IPFpoints = 500+100*(total-(c1*Math.log(weight)-c2))/(c3*Math.log(weight)-c4);
+            IPFpoints = 500+100*(total-(vars[0]*Math.log(weight)-vars[1]))/(vars[2]*Math.log(weight)-vars[3]);
         }
+
         this.setState({
             totalPoints: IPFpoints
-        }
-        )
-        return weight;
+        })
     }
+
+
 
     handleGender = () =>{
         this.setState({

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "488993383603",
+    "firebase_url": "https://powercalc-d6359.firebaseio.com",
+    "project_id": "powercalc-d6359",
+    "storage_bucket": "powercalc-d6359.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488993383603:android:985fb4bdc2f8bb65",
+        "android_client_info": {
+          "package_name": "com.fragariamedia.powercalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488993383603-5k29qqt9049mmt0kn07v703dh6pibh0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAujFWum1K6fekxnQ-yQsP5PUhvg4raPpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488993383603-5k29qqt9049mmt0kn07v703dh6pibh0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
