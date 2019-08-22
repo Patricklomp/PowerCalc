@@ -1,4 +1,17 @@
 {
-  "name": "PowerCalc",
-  "displayName": "PowerCalc"
+  "expo": {
+      "name": "PowerCalc",
+      "icon": "./path/to/your/app-icon.png",
+      "version": "1.0.0",
+      "slug": "powercalc",
+      "sdkVersion": "26.0.0",
+      "ios": {
+      "bundleIdentifier": "com.fragariamedia.powercalc",
+      "entryPoint": "./src/App.js",
+  },
+  "android": {
+  "package": "com.fragariamedia.powercalc"
+  }
+  }
+  
 }

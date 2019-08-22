@@ -2,6 +2,7 @@
   "name": "pwr",
   "version": "0.0.1",
   "private": true,
+  "entryPoint": "./src/App.js",
   "scripts": {
     "start": "react-native start",
     "test": "jest",
