@@ -1,9 +1,9 @@
 {
   "expo": {
-      "name": "PowerCalc",
+      "name": "pwr",
       "icon": "./path/to/your/app-icon.png",
       "version": "1.0.0",
-      "slug": "powercalc",
+      "slug": "pwr",
       "sdkVersion": "26.0.0",
       "ios": {
       "bundleIdentifier": "com.fragariamedia.powercalc",

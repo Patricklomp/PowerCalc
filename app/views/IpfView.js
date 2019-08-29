@@ -96,7 +96,7 @@ export default class IpfView extends Component {
         return (
            
             <Card style={[styles.calculator]}> 
-            <Text h4 styles={styles.header}>IPF Calculator</Text>
+            <Text h4 styles={styles.header}>IPF Calculator (Kilos)</Text>
 
 
             <View styles={[styles.personInputs]}>

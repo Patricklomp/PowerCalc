@@ -37,7 +37,7 @@ export default class WilksView extends Component {
         return (
            
             <Card style={[styles.calculator]}> 
-            <Text h4 styles={styles.header}>Wilks Calculator</Text>
+            <Text h4 styles={styles.header}>Wilks Calculator (Kilos)</Text>
 
 
             <View styles={[styles.personInputs]}>
